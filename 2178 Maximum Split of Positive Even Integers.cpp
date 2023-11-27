@@ -32,3 +32,79 @@ Constraints:
 
 1 <= finalSum <= 1010
 */
+#include <vector>
+using namespace std;
+
+class Solution {
+public:
+    vector<long long> maximumEvenSplit(long long finalSum) {
+        //credit to chandanagrawal23, TC O(finalSum), SC O(1)
+        /*
+        Take n =14
+
+        i = 2 , crSum = 0 , list = [] (crSum + 2 <= 14 , so push it) , crSum + i = 2 , list = [2]
+        i = 4 , crSum = 2 , list = [2] (crSum + 4 <= 14 , so push it) , crSum + i = 6 , list = [2,4]
+        i = 6 , crSum = 6 , list = [2,4] (crSum + 6 <= 14 , so push it) , crSum + i = 12 , list = [2,4,6]
+        i = 8 , crSum = 12 , list = [2,4,6] (crSum + 8 > 14 , so don't push it , break the loop)
+        Now we have crSum = 12 , and we want 14 , so simply add difference (which is 14-12 = 2 ) in the last element of list
+
+        so list = [2,4,6+(14-12)] = [2,4,8]
+        */
+
+        if(finalSum %2 == 1){
+            return {};
+        }
+
+        vector<long long> res;
+        long long i = 2;
+        long long curSum = 0;
+        while((curSum + i) <= finalSum){
+            res.push_back(i);
+            curSum += i;
+            i += 2;
+        }
+
+        res.back() += (finalSum - curSum);
+
+        return res;
+    }
+};
+
+
+class Solution {
+    //credit to rahulvyas09874 (in chandanagrawal23 post), backtracking
+public:
+    vector<long long> maximumEvenSplit(long long finalSum) {
+        if(finalSum %2 == 1){
+            return {};
+        }
+        vector<long long> tempVec;
+        findSplit(2, finalSum, tempVec);
+
+        return res;
+    }
+private:
+    vector<long long> res;
+    bool findSplit(long long start, long long finalSum, vector<long long> &tempVec){
+        if(finalSum == 0){
+            if(tempVec.size() > res.size()){
+                res = tempVec;
+            }
+            return true;
+        }
+
+        if(finalSum < 0){
+            return false;
+        }
+
+        for(long long i = start; i <= finalSum; i += 2){
+            tempVec.push_back(i);
+            if(findSplit(i + 2, finalSum - i, tempVec)){
+                return true;
+            }
+            tempVec.pop_back();
+        }
+
+        return false;
+    }
+};
