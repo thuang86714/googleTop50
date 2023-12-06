@@ -86,8 +86,8 @@ public:
         if(memo[target] > 0){
             return memo[target];
         }
-        int n = floor(log2(target)) + 1, res;
-        if(1 << n == target + 1){
+        int n = floor(log2(target)) + 1, res;// Smallest power of 2 greater than target
+        if(1 << n == target + 1){// Case when target is exactly 2^n - 1
             memo[target] = n;
         }else{
             memo[target] = racecar((1 << n) - 1 - target) + n + 1;

@@ -42,7 +42,7 @@ private:
         vector<vector<int>> visited(grid.size(), vector<int> (grid[0].size(), -1));
         queue<vector<int>> toVisit;
 
-        toVisit.push({0, 0, 0, k});
+        toVisit.push({0, 0, 0, k});//{x, y, step, curK}
         while(!toVisit.empty()){
             auto curVec = toVisit.front();
             int x = curVec[0], y = curVec[1];
