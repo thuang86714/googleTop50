@@ -5,9 +5,10 @@ using namespace std;
 #include <vector>
 
 class Solution {
-    //dfs
+    //dfs, TC O(n^2logn), SC O(n^2)
 public:
     int swimInWater(std::vector<std::vector<int>>& heightGrid) {
+        
         int size = heightGrid.size();
         int lowerBound = heightGrid[0][0], upperBound = size * size - 1;
         
@@ -123,7 +124,7 @@ public:
 class Solution {
 public:
     int swimInWater(vector<vector<int>>& grid) {
-        //credit to lee215, BFS
+       //credit to lee215 TC O(n^2*logn), SC O(n^2)
         int n = grid.size(), res = 0;
         priority_queue<vector<int>, vector<vector<int>>, greater<vector<int>>> minHeap;
         minHeap.push({grid[0][0], 0, 0});

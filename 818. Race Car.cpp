@@ -82,7 +82,7 @@ public:
 class Solution {
 public:
     int racecar(int target) {
-        //credit to lee215 and explanation from LuckyPants. TC O(target*logtarget), SC O(target)
+        //credit to lee215 and explanation from LuckyPㄒㄒnts. TC O(target*logtarget), SC O(target)
         if(memo[target] > 0){
             return memo[target];
         }
